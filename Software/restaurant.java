@@ -1,32 +1,32 @@
 package com;
 
-public class restaurant {
-    int getId;
-    String getName;
-    int getDOHMHInspectionScore;
-    String getNeighbourhood;
-    String getPhotograph;
-    String getAddress;
-    float getLat;
-    float getLng;
-    String getCuisine;
+public class Restaurant {
+    int id;
+    String name;
+    int DOHMHInspectionScore;
+    String neighbourhood;
+    String photograph;
+    String address;
+    float lat;
+    float lng;
+    String cuisine;
 
-    String[] getHours;
-    reviews[] getReviews;
+    String[] openHours;
+    Reviews[] reviews;
 
-    public restaurant(int getId, String getName, int getDOHMHInspectionScore, String getNeighbourhood,
-                      String getPhotograph, String getAddress,
-                      float getLat, float getLng, String getCuisine, String[] getHours) {
+    public Restaurant(int id, String name, int DOHMHInspectionScore, String neighbourhood,
+                      String photograph, String address,
+                      float lat, float lng, String cuisine, String[] getHours) {
 
-        this.getId = getId;
-        this.getName = getName;
-        this.getDOHMHInspectionScore = getDOHMHInspectionScore;
-        this.getNeighbourhood = getNeighbourhood;
-        this.getPhotograph = getPhotograph;
-        this.getAddress = getAddress;
-        this.getLat = getLat;
-        this.getLng = getLng;
-        this.getCuisine = getCuisine;
-        this.getHours = getHours;
+        this.id = id;
+        this.name = name;
+        this.DOHMHInspectionScore = DOHMHInspectionScore;
+        this.neighbourhood = neighbourhood;
+        this.photograph = photograph;
+        this.address = address;
+        this.lat = lat;
+        this.lng = lng;
+        this.cuisine = cuisine;
+        this.openHours = getHours;
     }
 }

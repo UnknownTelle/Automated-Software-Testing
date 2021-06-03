@@ -1,7 +1,6 @@
 package com;
 
 import org.json.JSONArray;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -39,14 +38,20 @@ public class ReadJSON {
                 DOHMH = Integer.parseInt(ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).get("DOHMH_inspection_score").toString());
             }
             // Reads in each day and puts into an array to get the times.
-            String[] getHours = new String[7];
-            getHours[0] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Monday").toString();
-            getHours[1] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Tuesday").toString();
-            getHours[2] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Wednesday").toString();
-            getHours[3] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Thursday").toString();
-            getHours[4] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Friday").toString();
-            getHours[5] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Saturday").toString();
-            getHours[6] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Sunday").toString();
+            String[] Hours = new String[7];
+            Hours[0] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Monday").toString();
+            Hours[1] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Tuesday").toString();
+            Hours[2] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Wednesday").toString();
+            Hours[3] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Thursday").toString();
+            Hours[4] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Friday").toString();
+            Hours[5] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Saturday").toString();
+            Hours[6] = ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("operating_hours").get("Sunday").toString();
+
+            Double[] LatLng = new Double[2];
+            LatLng[0] = Double.parseDouble(ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("latlng").get("lat").toString());
+            LatLng[1] = Double.parseDouble(ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("latlng").get("lng").toString());
+
+            double distance = 0;
 
             // loops through the restaurants on the API
             dataArray[i] = new Restaurant(Integer.parseInt(
@@ -56,10 +61,10 @@ public class ReadJSON {
                     ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).get("neighborhood").toString(),
                     ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).get("photograph").toString(),
                     ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).get("address").toString(),
-                    Float.parseFloat(ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("latlng").get("lat").toString()),
-                    Float.parseFloat(ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).getJSONObject("latlng").get("lng").toString()),
                     ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(i).get("cuisine_type").toString(),
-                    getHours);
+                    Hours,
+                    LatLng,
+                    distance);
 
             // loops through the reviews on the API
             dataArray[i].reviews = new Reviews[(ja.getJSONObject(0).getJSONArray("restaurants").getJSONObject(0).getJSONArray("reviews").length())];
